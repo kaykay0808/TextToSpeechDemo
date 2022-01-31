@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setContentView(binding.root)
 
         tts = TextToSpeech(this, this)
-        binding.btnSpeak.setOnClickListener { view ->
+        binding.btnSpeak.setOnClickListener {
             if (binding.etEnteredText.text.isEmpty()) {
                 Toast.makeText(
                     this,
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS){
+        if (status == TextToSpeech.SUCCESS) {
             val result = tts!!.setLanguage(Locale.US)
 
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
@@ -47,19 +47,16 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
-    private fun speakOut(text: String){
+    private fun speakOut(text: String) {
         tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        if(tts != null){
+        if (tts != null) {
             tts?.stop()
             tts?.shutdown()
         }
     }
-
-
 }
