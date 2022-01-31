@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kay.texttospeechdemo.databinding.ActivityMainBinding
-import java.util.*
+import java.util.Locale
 
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
@@ -23,11 +23,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         tts = TextToSpeech(this, this)
         binding.btnSpeak.setOnClickListener {
             if (binding.etEnteredText.text.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    "Enter a text to speak.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "Enter a text to speak.", Toast.LENGTH_SHORT).show()
             } else {
                 // todo speak the text please
                 speakOut(binding.etEnteredText.text.toString())
